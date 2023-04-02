@@ -7,24 +7,19 @@ var label_z
 var ponta 
 var tween
 var new_position
-export var URL = "http://10.254.18.127:3000/godot" #É importante ver se é a mesma URL do site
+export var URL = "http://10.254.18.127:3000/godot" 
 
-#Essa é a função do Start, que começa o timer, faz o request, torna o botão de start
-#invisível e o de stop visível
 func _on_Request_pressed():
 	$Timer.start()
 	$HTTPRequest.request(URL)
 	$CanvasLayer/Request.visible = false
 	$CanvasLayer/Stop.visible = true
 
-#Aqui, o timer para, e o inverso da função acima acontece nos botões 
 func _on_Stop_pressed():
 	$Timer.stop()
 	$CanvasLayer/Stop.visible = false
 	$CanvasLayer/Request.visible = true
 
-#Define o botão de stop como invisível, define a duração do timer, e conectar os nós 
-#de label nas variáveis criadas, assim como a ponta
 func _ready():
 	$CanvasLayer/Stop.visible = false
 	ponta = get_node("RigidBody")
@@ -35,8 +30,7 @@ func _ready():
 
 func _on_Timer_timeout():
 	_on_Request_pressed()
-
-#Essa é a função que faz a ponta se movimentar até a nova posição.
+	
 func animate_to_position(position):
 	tween = $Tween
 	tween.interpolate_property(
@@ -44,8 +38,6 @@ func animate_to_position(position):
 	)
 	tween.start()
 
-#Função para quando a requisição for completa. pega os valores novos, coloca em variáveis,
-#adiciona na label, chama a a animação.
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var output = body.get_string_from_utf8()
 	var x = output.get_slice("/",0)
