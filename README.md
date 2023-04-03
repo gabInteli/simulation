@@ -23,7 +23,6 @@ O projeto Robô Digital tem por objetivo a elaboração de uma solução complet
 2. SQLAlchemy 
 
 ## Back-end
-### Construção 
 Inicialmente foi preciso criar um arquivo Python que conterá o código do servidor Flask. Nesse arquivo, você precisará importar o módulo Flask e definir uma instância da classe Flask para o seu aplicativo. Por exemplo:
 </br>
 
@@ -32,6 +31,7 @@ Inicialmente foi preciso criar um arquivo Python que conterá o código do servi
 
 `app = Flask(__name__)`
 
+## Construção 
 Em seguida, foram definidas as rotas para o aplicativo, que correspondem a URLs específicas que o usuário pode acessar. 
 
 1. A primeira rota consiste na interface inicial do aplicativo, responsável por interagir com o usuário para a inserção de dados. 
@@ -76,6 +76,8 @@ def godot_coords():
 
 Agora, para criar uma interface de frontend, foi necessário utilizar as rotas definidas no backend que renderizam modelos HTML. Flask usa um mecanismo de modelo chamado Jinja2, que permite criar modelos HTML dinâmicos que incluem variáveis, loops e condicionais.
 
+## Construção
+
 Inicialmente foi criada uma pasta responsável por armazenar os modelos de páginas HTML, chamada "templates". 
 
 Para criar um modelo Jinja2, foi criado um arquivo `index.hmtl` e adicionadas as tags Jinja2 que seriam responsáveis por receberem valores do servidor.
@@ -101,10 +103,46 @@ Então, quando um usuário preenche o formulário HTML com as coordenadas, a int
 
 ## Banco de Dados 
 ### Construção 
+o Banco de dados foi criado utilizando a linguagem de programação SQL (Structured Query Language). O banco de dados em questão foi desenvolvido através do uso da biblioteca específica do Python denominada SQLAlchemy, a qual fornece uma interface de banco de dados ORM (Object-Relational Mapping). Essa interface permite que os desenvolvedores interajam com o banco de dados por meio de objetos em vez de escrever SQL diretamente.
 
+O banco de dados em questão tem sua estrutura baseada em coordenadas armazenadas em um sistema de eixos tridimensionais. As coordenadas são representadas por três valores numéricos correspondentes às posições em x, y e z. As colunas do banco de dados são estruturadas com base nessas posições, e cada célula do banco é preenchida com um valor inteiro. 
 
-
-## Simulação 
-
+![img](https://github.com/gabInteli/simulation/blob/main/src/static/images/readme3.png)
 
 ## Instruções de Acesso 
+### Interface 
+1. Para acessar a interface de inserção de dados basta acessar a pasta "src": 
+</br>
+
+`cd src`
+
+2. Em seguida basta iniciar o servidor com o comando: 
+</br>
+
+`python main.py`
+
+3. Por fim, basta acessar o endereço apontado pelo servidor. 
+
+![img](https://github.com/gabInteli/simulation/blob/main/src/static/images/readme4.png)
+
+
+### Banco de Dados 
+
+Para acessar o banco foi utilizado o software "DBBrowser", porém ele pode ser acessador por diversos outros que permitem a visualização do banco. 
+
+Basta apenas abrir o arquivo contido na pasta "src" e entitulado como: 
+`coordenates.db`
+
+### Simulação 
+
+*Obs.: Devido a restrições de armazenamento do GitHub em relação a tamanho de arquivos, por conta do arquivo .obj responsável pelo Mesh3D do braço robótico, foi necessário encapsular o arquivo Godot em uma pasta zipada que ao abrir o repositório localmente deve ser descompactada.*
+
+1. Para acessar a simulação basta abrir inicialmente o software Godot. 
+
+2. Em seguida é necessário importar o arquivo contido na pasta que foi descompactada, o arquivo tem a nomeclatura: `project.godot`
+
+3. Ao abrir o arquivo, incialmente é necessário alterar a variável de URL do Script "Spacial.gd", pois o endereço de IP do endpoint irá variar de acordo com cada máquina e a rede wifi conectada. 
+
+4. Por fim basta iniciar a simulação em "Run" no software Godot. 
+
+5. Para acompanhar a atualização dos dados constante basta ativar o botão de "Ativar Captação de Dados". 
