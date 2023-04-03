@@ -34,7 +34,43 @@ Inicialmente foi preciso criar um arquivo Python que conterá o código do servi
 
 Em seguida, foram definidas as rotas para o aplicativo, que correspondem a URLs específicas que o usuário pode acessar. 
 
-### Função 
+1. A primeira rota consiste na interface inicial do aplicativo, responsável por interagir com o usuário para a inserção de dados. 
+
+```
+from flask import render_template
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+```
+
+2. A segunda rota é responsável por captar os dados fornecidos pelo usuário na interface e enviar esses dados para o banco de dados estruturado por meio da biblioteca SQLAlchemy: 
+
+```
+@app.route('/post', methods=["POST"])
+def postForm():
+    print(request.form)
+    c1 = Coordenate(x=request.form['x'], y=request.form['y'], z=request.form['z'])
+
+    session.add(c1)
+    session.commit()
+    return render_template('index.html', x=request.form['x'], y=request.form['y'], z=request.form['z'])
+
+```
+
+3. A terceira rota se trata da responsável por atuar como um endpoint para o software Godot receber as informações de posição do elemento: 
+
+```
+@app.route('/godot', methods=["GET", "POST"])
+def godot_coords():
+    coordenadas = session.query(Coordenate).all()
+    if coordenadas:
+        x = coordenadas[-1].x
+        y = coordenadas[-1].y
+        z = coordenadas[-1].z
+    godotstring = f"{x}/{y}/{z}"
+    return godotstring 
+```
 
 ## Front-end 
 
@@ -65,6 +101,10 @@ Então, quando um usuário preenche o formulário HTML com as coordenadas, a int
 
 ## Banco de Dados 
 ### Construção 
-### Função 
+
+
+
 ## Simulação 
+
+
 ## Instruções de Acesso 
