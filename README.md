@@ -46,19 +46,22 @@ Para criar um modelo Jinja2, foi criado um arquivo `index.hmtl` e adicionadas as
 
 ![img](https://github.com/gabInteli/simulation/blob/main/src/static/images/readme1.png)
 
-Para renderizar esse modelo em uma rota, você precisa usar a função render_template do Flask.
+Para renderizar esse modelo em uma rota, foi utilizada a função render_template do Flask.
 
 ```
 from flask import render_template
 
-@app.route('/pagina')
-def pagina():
-    mensagem = 'Bem-vindo à minha página'
-    return render_template('pagina.html', mensagem=mensagem)
+@app.route('/')
+def index():
+    return render_template('index.html')
 ```
-### Construção 
+
 ### Interface 
-### Função 
+Foi desenvolvida uma interface que consiste em um formulário HTML que permite capturar as coordenadas x, y e z. Essas coordenadas são usadas para controlar uma simulação no Godot. Além disso, a interface é responsável por criar um novo registro de coordenadas em um banco de dados e direcionar a simulação no Godot para essas coordenadas.
+
+Então, quando um usuário preenche o formulário HTML com as coordenadas, a interface envia essas informações para o programa Godot, permitindo que a simulação seja executada nas coordenadas especificadas pelo usuário. E todas as coordenadas coletadas são armazenadas em um banco de dados para referência futura.
+
+![img](https://github.com/gabInteli/simulation/blob/main/src/static/images/readme2.png)
 
 ## Banco de Dados 
 ### Construção 
