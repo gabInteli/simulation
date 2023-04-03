@@ -44,7 +44,7 @@ Inicialmente foi criada uma pasta responsável por armazenar os modelos de pági
 
 Para criar um modelo Jinja2, foi criado um arquivo `index.hmtl` e adicionadas as tags Jinja2 que seriam responsáveis por receberem valores do servidor.
 
-
+<img href="https://github.com/gabInteli/simulation/blob/main/src/static/images/readme1.png?raw=true">
 
 Para renderizar esse modelo em uma rota, você precisa usar a função render_template do Flask.
 
